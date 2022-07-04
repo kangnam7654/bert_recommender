@@ -46,7 +46,7 @@ def u_user_process():
 
 def u_item_process():
     d = {
-        "movie_id": [],
+        "item_id": [],
         "movie_title": [],
         "release_date": [],
         "video_release_date": [],
@@ -77,8 +77,55 @@ def u_item_process():
 
     for line in lines:
         line_split = str(line).replace('\n', '').split('|')
-        pass
+        if line_split[1] == 'unknown':
+            for id, [k, v] in enumerate(d.items()):
+                if id == 0:
+                    v.append('267')
+                else:
+                    if k == 'unknown':
+                        v.append('1')
+                    else:
+                        v.append('0')
+            continue
+        d['item_id'].append(line_split[0].replace('b', '').replace('"', '').replace("'", ''))
+        d['movie_title'].append(line_split[1].split(' (')[0])
+        d['release_date'].append(line_split[1].split(' (')[1].replace(')', ''))
+        d['video_release_date'].append(line_split[2])
+        d['IMDb_url'].append(line_split[4])
+        d['unknown'].append(line_split[5])
+        d['action'].append(line_split[6])
+        d['adventure'].append(line_split[7])
+        d['animation'].append(line_split[8])
+        d['children'].append(line_split[9])
+        d['comedy'].append(line_split[10])
+        d['crime'].append(line_split[11])
+        d['documentary'].append(line_split[12])
+        d['drama'].append(line_split[13])
+        d['fantasy'].append(line_split[14])
+        d['film_noir'].append(line_split[15])
+        d['horror'].append(line_split[16])
+        d['musical'].append(line_split[17])
+        d['mystery'].append(line_split[18])
+        d['romance'].append(line_split[19])
+        d['sci_fi'].append(line_split[20])
+        d['thriller'].append(line_split[21])
+        d['war'].append(line_split[22])
+        d['western'].append(line_split[23].replace("\\n'", ''))
+        
+    df = pd.DataFrame(d)
+    df.to_csv(os.path.join(DATA_DIR, "item.csv"), index=False, encoding="utf-8")
+
+def all_concat():
+    data = pd.read_csv(os.path.join(DATA_DIR, 'data.csv'))
+    user = pd.read_csv(os.path.join(DATA_DIR, 'user.csv'))
+    item = pd.read_csv(os.path.join(DATA_DIR, 'item.csv'))
+    data_user = pd.merge(data, user, how='left', on='user_id')
+    all = pd.merge(data_user, item, how='left', on='item_id')
+    all.to_csv(os.path.join(DATA_DIR, 'all_data.csv'), index=False, encoding='utf-8')
 
 
 if __name__ == "__main__":
+    u_data_process()
+    u_user_process()
     u_item_process()
+    all_concat()
