@@ -6,6 +6,15 @@ At first, I used [CLS] token to compute similarity, but it broght rarely differe
 It's just idea, not for real service application.
 
 --- 
+## Requirements
+```
+python == 3.9.12  
+transformers from hugging faces  
+pandas  
+numpy  
+```
+Can also see in `requirements.txt`
+
 ## Data
 Actual project data are in NDA. so I used alternative data `ml-100k`
 
