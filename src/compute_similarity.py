@@ -46,5 +46,8 @@ def compute_similarity():
             tmp.append(similarity.detach().cpu().item())
         corr_map.insert((int(col) - 1), col, tmp)
     corr_map.to_csv(
-        os.path.join(DATA_DIR, "ml_corr_map.csv"), index=False, encoding="utf-8"
+        os.path.join(DATA_DIR, "ml_corr_map.csv"), index=True, encoding="utf-8"
     )
+
+if __name__ == '__main__':
+    compute_similarity()
