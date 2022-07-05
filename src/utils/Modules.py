@@ -4,10 +4,16 @@ import seaborn as sns
 import torch
 from transformers import BertModel, BertTokenizer
 import pandas as pd
-from utils.BigWaveTables import BigWaveTables
+
+def load_bert():
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+    with torch.no_grad():
+        model = BertModel.from_pretrained('bert-base-uncased')
+    return model, tokenizer
+    
 
 
-class RecommendModules(BigWaveTables):
+class RecommendModules:
     def __init__(self):
         super().__init__()
         self.raw_data = self.solution_join
@@ -119,4 +125,23 @@ class RecommendModules(BigWaveTables):
         return cos_similarity
 
 if __name__ == '__main__':
+    model, tokenizer = load_bert()
+    text1 = 'date and month'
+    text2 = 'monday and sunday'
+    text3 = 'mars and pluto'
+    
+    encode_input1 = tokenizer(text1, return_tensors='pt')
+    encode_input2 = tokenizer(text2, return_tensors='pt')
+    encode_input3 = tokenizer(text3, return_tensors='pt')
+    
+    output1 = model(**encode_input1)
+    output2 = model(**encode_input2)
+    output3 = model(**encode_input3)
+    
+    cls1 = output1.pooler_output
+    cls2 = output2.pooler_output
+    cls3 = output3.pooler_output
+    
+    a = torch.cosine_similarity(cls1, cls2, dim=-1)
+    b = torch.cosine_similarity(cls1, cls3, dim=-1)
     pass

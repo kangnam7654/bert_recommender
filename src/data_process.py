@@ -113,6 +113,7 @@ def u_item_process():
         d['western'].append(line_split[23].replace("\\n'", ''))
         
     df = pd.DataFrame(d)
+    df = df.applymap(lambda x: x.replace(r'\n"', ''))
     df.to_csv(os.path.join(DATA_DIR, "item.csv"), index=False, encoding="utf-8")
 
 def all_concat():
