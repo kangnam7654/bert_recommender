@@ -8,7 +8,6 @@ import torch
 from models.bert import load_bert
 
 
-
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--item", type=int, default=0)
