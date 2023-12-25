@@ -1,9 +1,0 @@
-python==3.9.12
-matplotlib
-numpy
-pandas
-PyYAML
-seaborn
-torch
-tqdm
-transformers
