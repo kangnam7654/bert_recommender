@@ -1,9 +1,4 @@
-python==3.9.12
-matplotlib
-numpy
+transformers
 pandas
-PyYAML
-seaborn
 torch
 tqdm
-transformers

@@ -1,17 +1,17 @@
 import argparse
 import os
-import torch
-from tqdm import tqdm
-from models.bert import load_bert
-from pathlib import Path
 
+from tqdm import tqdm
 import pandas as pd
+import torch
+
+from models.bert import load_bert
+
 
 
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--item", type=int, default=0)
-    parser.add_argument("--top_k", type=int, default=5)
     args = parser.parse_args()
     return args
 
