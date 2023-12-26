@@ -1,23 +1,43 @@
-# BERT Recommender System (This repository is for portfolio)
+# BERT Recommender System (Portfolio Repository)
 ## Project Description
-This project begun from DataVoucher, K-data the government org.  
-I noticed that what can represent to vector can mearsure similarity geometrically.   
-Therefore I just let the BERT to encode product's description.  
+This project began with the Data Voucher program of K-data, a government organization. I realized that if product descriptions are represented as vectors, their similarity can be measured geometrically. Therefore, I used the BERT model to encode the descriptions of products.
 
-
---- 
+---
 ## Requirements
+- Python
+- Transformers (Hugging Face)
+- Pandas
+- Torch
+- Tqdm
+
+The complete list can also be found in `requirements.txt`.
+
+## Installation
+```bash
+pip install -r requirements.txt
 ```
-python  
-transformers from hugging faces  
-pandas
-torch 
-tqdm  
-```
-Can also see in `requirements.txt`
 
 ## Data
-Actual project data are in NDA. so I used alternative data `proudct_description.csv` the fake data using `utils/make_random_data.py`
+Due to NDA (Non-Disclosure Agreement), the actual project data cannot be shared. As an alternative, I used `product_description.csv`, a mock dataset created using `utils/make_random_data.py`.
 
-## Similarity computation
-Cosine Similarity
+The `product_description.csv` file has the following format:
+- Column 1: Product ID
+- Column 2: Product Description
+
+## Similarity Computation
+Similarity is calculated using Cosine Similarity, which measures the cosine of the angle between two vectors in a multi-dimensional space.
+
+Example code:
+```python
+from sklearn.metrics.pairwise import cosine_similarity
+```
+
+## Calculating cosine similarity between vectors
+
+similarity = cosine_similarity(vector1, vector2)
+
+## Contributing
+Contributions to this project are welcome! Feel free to submit Pull Requests or Issues for participation.
+
+## Contact and Support
+For questions or support, please contact kkangnam7654@gmail.com.
