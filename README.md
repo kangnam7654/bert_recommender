@@ -21,20 +21,17 @@ pip install -r requirements.txt
 Due to NDA (Non-Disclosure Agreement), the actual project data cannot be shared. As an alternative, I used `product_description.csv`, a mock dataset created using `utils/make_random_data.py`.
 
 The `product_description.csv` file has the following format:
-- Column 1: Product ID
-- Column 2: Product Description
+* Column 1: Product ID
+* Column 2: Product Description
 
 ## Similarity Computation
-Similarity is calculated using Cosine Similarity, which measures the cosine of the angle between two vectors in a multi-dimensional space.
-
-Example code:
-```python
-from sklearn.metrics.pairwise import cosine_similarity
-```
+Similarity is calculated using **Cosine Similarity**, which measures the cosine of the angle between two vectors in a multi-dimensional space.
 
 ## Calculating cosine similarity between vectors
-
-similarity = cosine_similarity(vector1, vector2)
+Used torch's
+```python
+sim = torch.cosine_similarity(vector1, vector2)
+```
 
 ## Contributing
 Contributions to this project are welcome! Feel free to submit Pull Requests or Issues for participation.
